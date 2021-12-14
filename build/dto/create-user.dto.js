@@ -9,39 +9,32 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.User = void 0;
-var typeorm_1 = require("typeorm");
-var User = /** @class */ (function () {
-    function User() {
+exports.CreateUserDto = void 0;
+var swagger_1 = require("@nestjs/swagger");
+var CreateUserDto = /** @class */ (function () {
+    function CreateUserDto() {
     }
     __decorate([
-        (0, typeorm_1.PrimaryGeneratedColumn)('uuid'),
+        (0, swagger_1.ApiProperty)({ type: String }),
         __metadata("design:type", String)
-    ], User.prototype, "id", void 0);
+    ], CreateUserDto.prototype, "firstName", void 0);
     __decorate([
-        (0, typeorm_1.Column)(),
+        (0, swagger_1.ApiProperty)({ type: String }),
         __metadata("design:type", String)
-    ], User.prototype, "firstName", void 0);
+    ], CreateUserDto.prototype, "lastName", void 0);
     __decorate([
-        (0, typeorm_1.Column)(),
+        (0, swagger_1.ApiProperty)({ type: String }),
         __metadata("design:type", String)
-    ], User.prototype, "lastName", void 0);
+    ], CreateUserDto.prototype, "email", void 0);
     __decorate([
-        (0, typeorm_1.Column)(),
+        (0, swagger_1.ApiProperty)({ type: String }),
         __metadata("design:type", String)
-    ], User.prototype, "email", void 0);
+    ], CreateUserDto.prototype, "password", void 0);
     __decorate([
-        (0, typeorm_1.Column)(),
+        (0, swagger_1.ApiProperty)({ type: String }),
         __metadata("design:type", String)
-    ], User.prototype, "password", void 0);
-    __decorate([
-        (0, typeorm_1.Column)(),
-        __metadata("design:type", String)
-    ], User.prototype, "tipo_user", void 0);
-    User = __decorate([
-        (0, typeorm_1.Entity)()
-    ], User);
-    return User;
+    ], CreateUserDto.prototype, "tipoUser", void 0);
+    return CreateUserDto;
 }());
-exports.User = User;
-//# sourceMappingURL=user.entity.js.map
+exports.CreateUserDto = CreateUserDto;
+//# sourceMappingURL=create-user.dto.js.map
