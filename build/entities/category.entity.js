@@ -20,7 +20,7 @@ var Category = /** @class */ (function () {
         __metadata("design:type", Number)
     ], Category.prototype, "id", void 0);
     __decorate([
-        (0, typeorm_1.Column)(),
+        (0, typeorm_1.Column)({ unique: true }),
         __metadata("design:type", String)
     ], Category.prototype, "name", void 0);
     __decorate([
