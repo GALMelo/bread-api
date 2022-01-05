@@ -38,8 +38,18 @@ export class CategoriesService {
     }
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} category`;
+  async findOne(id: number) {
+    try {
+      return await getRepository(Category).findOne({ id });
+    } catch (error) {
+      throw new HttpException (
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: error.message,
+        },
+        HttpStatus.BAD_REQUEST,
+      );
+    }
   }
 
   update(id: number, updateCategoryDto: UpdateCategoryDto) {
