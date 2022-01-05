@@ -68,7 +68,18 @@ export class CategoriesService {
     }
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} category`;
+  async remove(id: number) {
+    try {
+      let categoryToRemove = await getRepository(Category).findOne({ id });
+      return await getRepository(Category).remove(categoryToRemove);
+    } catch (error) {
+      throw new HttpException (
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: error.message,
+        },
+        HttpStatus.BAD_REQUEST,
+      );
+    }
   }
 }
