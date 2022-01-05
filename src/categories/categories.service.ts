@@ -52,8 +52,20 @@ export class CategoriesService {
     }
   }
 
-  update(id: number, updateCategoryDto: UpdateCategoryDto) {
-    return `This action updates a #${id} category`;
+  async update(id: number, updateCategoryDto: UpdateCategoryDto) {
+    try {
+      let categoryToUpdate = await getRepository(Category).findOne({ id });
+      categoryToUpdate.name = updateCategoryDto.name;
+      return await getRepository(Category).save(categoryToUpdate);
+    } catch (error) {
+      throw new HttpException (
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: error.message,
+        },
+        HttpStatus.BAD_REQUEST,
+      );
+    }
   }
 
   remove(id: number) {
