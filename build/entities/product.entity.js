@@ -20,9 +20,15 @@ var Product = /** @class */ (function () {
         __metadata("design:type", String)
     ], Product.prototype, "id", void 0);
     __decorate([
-        (0, typeorm_1.ManyToOne)(function () { return category_entity_1.Category; }),
+        (0, typeorm_1.ManyToOne)(function () { return category_entity_1.Category; }, {
+            onDelete: 'CASCADE',
+        }),
         __metadata("design:type", category_entity_1.Category)
     ], Product.prototype, "category", void 0);
+    __decorate([
+        (0, typeorm_1.Column)(),
+        __metadata("design:type", String)
+    ], Product.prototype, "name", void 0);
     __decorate([
         (0, typeorm_1.Column)(),
         __metadata("design:type", String)
@@ -33,10 +39,14 @@ var Product = /** @class */ (function () {
     ], Product.prototype, "price", void 0);
     __decorate([
         (0, typeorm_1.Column)(),
+        __metadata("design:type", String)
+    ], Product.prototype, "image_url", void 0);
+    __decorate([
+        (0, typeorm_1.Column)({ default: 100 }),
         __metadata("design:type", Number)
     ], Product.prototype, "qty", void 0);
     __decorate([
-        (0, typeorm_1.Column)(),
+        (0, typeorm_1.Column)({ default: 0 }),
         __metadata("design:type", Number)
     ], Product.prototype, "sold", void 0);
     Product = __decorate([

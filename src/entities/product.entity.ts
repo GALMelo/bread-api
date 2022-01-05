@@ -6,8 +6,13 @@ export class Product {
   @PrimaryGeneratedColumn()
   id: string;
 
-  @ManyToOne(() => Category)
+  @ManyToOne(() => Category, {
+    onDelete: 'CASCADE',
+  })
   category: Category;
+
+  @Column()
+  name: string;
 
   @Column()
   description: string;
@@ -16,8 +21,11 @@ export class Product {
   price: number;
 
   @Column()
-  qty: number;
+  image_url: string;
 
-  @Column()
-  sold: number;
+  @Column({ default: 100 })
+  qty?: number;
+
+  @Column({ default: 0 })
+  sold?: number;
 }
