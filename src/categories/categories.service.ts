@@ -24,8 +24,18 @@ export class CategoriesService {
 
   }
 
-  findAll() {
-    return `This action returns all categories`;
+  async findAll() {
+    try {
+      return await getRepository(Category).find();
+    } catch (error) {
+      throw new HttpException (
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: error.message,
+        },
+        HttpStatus.BAD_REQUEST,
+      );
+    }
   }
 
   findOne(id: number) {
