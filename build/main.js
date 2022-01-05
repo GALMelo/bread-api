@@ -47,7 +47,7 @@ function bootstrap() {
                 case 0: return [4 /*yield*/, core_1.NestFactory.create(app_module_1.AppModule)];
                 case 1:
                     app = _a.sent();
-                    return [4 /*yield*/, app.listen(3000)];
+                    return [4 /*yield*/, app.listen(process.env.PORT)];
                 case 2:
                     _a.sent();
                     return [2 /*return*/];
