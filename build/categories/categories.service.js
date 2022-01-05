@@ -74,13 +74,68 @@ var CategoriesService = /** @class */ (function () {
         });
     };
     CategoriesService.prototype.findAll = function () {
-        return "This action returns all categories";
+        return __awaiter(this, void 0, void 0, function () {
+            var error_2;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, (0, typeorm_1.getRepository)(category_entity_1.Category).find()];
+                    case 1: return [2 /*return*/, _a.sent()];
+                    case 2:
+                        error_2 = _a.sent();
+                        throw new common_1.HttpException({
+                            status: common_1.HttpStatus.BAD_REQUEST,
+                            error: error_2.message,
+                        }, common_1.HttpStatus.BAD_REQUEST);
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
     };
     CategoriesService.prototype.findOne = function (id) {
-        return "This action returns a #".concat(id, " category");
+        return __awaiter(this, void 0, void 0, function () {
+            var error_3;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, (0, typeorm_1.getRepository)(category_entity_1.Category).findOne({ id: id })];
+                    case 1: return [2 /*return*/, _a.sent()];
+                    case 2:
+                        error_3 = _a.sent();
+                        throw new common_1.HttpException({
+                            status: common_1.HttpStatus.BAD_REQUEST,
+                            error: error_3.message,
+                        }, common_1.HttpStatus.BAD_REQUEST);
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
     };
     CategoriesService.prototype.update = function (id, updateCategoryDto) {
-        return "This action updates a #".concat(id, " category");
+        return __awaiter(this, void 0, void 0, function () {
+            var categoryToUpdate, error_4;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 3, , 4]);
+                        return [4 /*yield*/, (0, typeorm_1.getRepository)(category_entity_1.Category).findOne({ id: id })];
+                    case 1:
+                        categoryToUpdate = _a.sent();
+                        categoryToUpdate.name = updateCategoryDto.name;
+                        return [4 /*yield*/, (0, typeorm_1.getRepository)(category_entity_1.Category).save(categoryToUpdate)];
+                    case 2: return [2 /*return*/, _a.sent()];
+                    case 3:
+                        error_4 = _a.sent();
+                        throw new common_1.HttpException({
+                            status: common_1.HttpStatus.BAD_REQUEST,
+                            error: error_4.message,
+                        }, common_1.HttpStatus.BAD_REQUEST);
+                    case 4: return [2 /*return*/];
+                }
+            });
+        });
     };
     CategoriesService.prototype.remove = function (id) {
         return "This action removes a #".concat(id, " category");
