@@ -138,7 +138,27 @@ var CategoriesService = /** @class */ (function () {
         });
     };
     CategoriesService.prototype.remove = function (id) {
-        return "This action removes a #".concat(id, " category");
+        return __awaiter(this, void 0, void 0, function () {
+            var categoryToRemove, error_5;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 3, , 4]);
+                        return [4 /*yield*/, (0, typeorm_1.getRepository)(category_entity_1.Category).findOne({ id: id })];
+                    case 1:
+                        categoryToRemove = _a.sent();
+                        return [4 /*yield*/, (0, typeorm_1.getRepository)(category_entity_1.Category).remove(categoryToRemove)];
+                    case 2: return [2 /*return*/, _a.sent()];
+                    case 3:
+                        error_5 = _a.sent();
+                        throw new common_1.HttpException({
+                            status: common_1.HttpStatus.BAD_REQUEST,
+                            error: error_5.message,
+                        }, common_1.HttpStatus.BAD_REQUEST);
+                    case 4: return [2 /*return*/];
+                }
+            });
+        });
     };
     CategoriesService = __decorate([
         (0, common_1.Injectable)()

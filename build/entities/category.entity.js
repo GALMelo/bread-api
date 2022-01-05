@@ -24,9 +24,11 @@ var Category = /** @class */ (function () {
         __metadata("design:type", String)
     ], Category.prototype, "name", void 0);
     __decorate([
-        (0, typeorm_1.OneToMany)(function () { return product_entity_1.Product; }, function (product) { return product.category; }),
+        (0, typeorm_1.OneToMany)(function () { return product_entity_1.Product; }, function (product) { return product.category; }, {
+            cascade: true,
+        }),
         __metadata("design:type", Array)
-    ], Category.prototype, "product", void 0);
+    ], Category.prototype, "products", void 0);
     Category = __decorate([
         (0, typeorm_1.Entity)()
     ], Category);

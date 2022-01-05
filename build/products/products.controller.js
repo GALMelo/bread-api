@@ -24,8 +24,8 @@ var ProductsController = /** @class */ (function () {
     ProductsController.prototype.create = function (createProductDto) {
         return this.productsService.create(createProductDto);
     };
-    ProductsController.prototype.findAll = function () {
-        return this.productsService.findAll();
+    ProductsController.prototype.findAll = function (query) {
+        return this.productsService.findAll(query);
     };
     ProductsController.prototype.findOne = function (id) {
         return this.productsService.findOne(+id);
@@ -45,8 +45,9 @@ var ProductsController = /** @class */ (function () {
     ], ProductsController.prototype, "create", null);
     __decorate([
         (0, common_1.Get)(),
+        __param(0, (0, common_1.Query)()),
         __metadata("design:type", Function),
-        __metadata("design:paramtypes", []),
+        __metadata("design:paramtypes", [Object]),
         __metadata("design:returntype", void 0)
     ], ProductsController.prototype, "findAll", null);
     __decorate([
