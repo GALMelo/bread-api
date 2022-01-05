@@ -35,8 +35,23 @@ export class ProductsService {
 
   }
 
-  findAll() {
-    return `This action returns all products`;
+  async findAll(query: any) {
+    try {
+      return await getRepository(Product).find({ 
+        relations: ["category"],
+        where: Object.keys(query).length > 0 ? {
+          category: { name: query.category }
+        } : {}
+      });
+    } catch (error) {
+      throw new HttpException (
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: error.message,
+        },
+        HttpStatus.BAD_REQUEST,
+      );
+    }
   }
 
   findOne(id: number) {

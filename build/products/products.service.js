@@ -84,8 +84,30 @@ var ProductsService = /** @class */ (function () {
             });
         });
     };
-    ProductsService.prototype.findAll = function () {
-        return "This action returns all products";
+    ProductsService.prototype.findAll = function (query) {
+        return __awaiter(this, void 0, void 0, function () {
+            var error_2;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, (0, typeorm_1.getRepository)(product_entity_1.Product).find({
+                                relations: ["category"],
+                                where: Object.keys(query).length > 0 ? {
+                                    category: { name: query.category }
+                                } : {}
+                            })];
+                    case 1: return [2 /*return*/, _a.sent()];
+                    case 2:
+                        error_2 = _a.sent();
+                        throw new common_1.HttpException({
+                            status: common_1.HttpStatus.BAD_REQUEST,
+                            error: error_2.message,
+                        }, common_1.HttpStatus.BAD_REQUEST);
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
     };
     ProductsService.prototype.findOne = function (id) {
         return "This action returns a #".concat(id, " product");
