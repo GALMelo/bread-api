@@ -2,7 +2,7 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { CreateProductDto } from '../dto/create-product.dto';
 import { UpdateProductDto } from '../dto/update-product.dto';
 import { Product } from '../entities/product.entity';
-import { getRepository } from 'typeorm';
+import { getRepository, Like } from 'typeorm';
 import { Category } from '../entities/category.entity';
 
 @Injectable()
@@ -39,8 +39,9 @@ export class ProductsService {
     try {
       return await getRepository(Product).find({ 
         relations: ["category"],
-        where: Object.keys(query).length > 0 && query.category ? {
-          category: { name: query.category }
+        where: Object.keys(query).length > 0 && (query.category || query.search )  ? {
+          category: query.category ? { name: query.category } : {},
+          name: query.search ? Like(`%${query.search}%`) : Like('%%'),
         } : {},
         take: Object.keys(query).length > 0 && query.limit ? Number(query.limit) : 0,
       });
