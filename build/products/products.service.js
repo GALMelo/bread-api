@@ -93,9 +93,10 @@ var ProductsService = /** @class */ (function () {
                         _a.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, (0, typeorm_1.getRepository)(product_entity_1.Product).find({
                                 relations: ["category"],
-                                where: Object.keys(query).length > 0 ? {
+                                where: Object.keys(query).length > 0 && query.category ? {
                                     category: { name: query.category }
-                                } : {}
+                                } : {},
+                                take: Object.keys(query).length > 0 && query.limit ? Number(query.limit) : 0,
                             })];
                     case 1: return [2 /*return*/, _a.sent()];
                     case 2:

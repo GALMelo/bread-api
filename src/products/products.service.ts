@@ -39,9 +39,10 @@ export class ProductsService {
     try {
       return await getRepository(Product).find({ 
         relations: ["category"],
-        where: Object.keys(query).length > 0 ? {
+        where: Object.keys(query).length > 0 && query.category ? {
           category: { name: query.category }
-        } : {}
+        } : {},
+        take: Object.keys(query).length > 0 && query.limit ? Number(query.limit) : 0,
       });
     } catch (error) {
       throw new HttpException (
