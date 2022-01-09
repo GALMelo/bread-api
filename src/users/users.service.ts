@@ -1,7 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { getRepository } from 'typeorm';
 import { CreateUserDto } from '../dto/create-user.dto';
-import { UpdateUserDto } from '../dto/update-user.dto';
 import { User } from '../entities/user.entity';
 var bcrypt = require('bcryptjs');
 
@@ -15,7 +14,7 @@ export class UsersService {
         bcrypt.hash(user.password, salt, async function (err, hash) {
           newUser.firstName = user.firstName;
           newUser.lastName = user.lastName;
-          newUser.password = salt;
+          newUser.password = hash;
           newUser.email = user.email;
           newUser.tipo_user = user.tipoUser;
 
@@ -35,15 +34,20 @@ export class UsersService {
     }
   }
 
-  login() {
-    return `This action returns all users`;
-  }
-
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+  async login(email, password) {
+    const userData = await getRepository(User).findOne({
+      where: { email: email },
+    });
+    if (userData) {
+      bcrypt.compare(password, userData.password, function (err, res) {
+        if (err) {
+          return err;
+        } else {
+          return userData;
+        }
+      });
+    } else {
+      return 'User not found';
+    }
   }
 }
