@@ -1,11 +1,33 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+<<<<<<< HEAD
+import { getRepository } from 'typeorm';
+import { CreateCategoryDto } from '../dto/create-category.dto';
+import { UpdateCategoryDto } from '../dto/update-category.dto';
+=======
 import { CreateCategoryDto } from '../dto/create-category.dto';
 import { UpdateCategoryDto } from '../dto/update-category.dto';
 import { getRepository } from 'typeorm';
+>>>>>>> e9549c2ce50ccb47c5041f7022ce462043a1f230
 import { Category } from '../entities/category.entity';
 
 @Injectable()
 export class CategoriesService {
+<<<<<<< HEAD
+  async findAll() {
+    try {
+      const result = await getRepository(Category)
+        .createQueryBuilder('category')
+        .getMany();
+
+      return { categories: result };
+    } catch (error) {
+      throw new HttpException(
+        {
+          status: HttpStatus.FORBIDDEN,
+          error: error.message,
+        },
+        HttpStatus.FORBIDDEN,
+=======
   async create(createCategoryDto: CreateCategoryDto) {
     try {
       const newCategory = getRepository(Category).create();
@@ -79,6 +101,7 @@ export class CategoriesService {
           error: error.message,
         },
         HttpStatus.BAD_REQUEST,
+>>>>>>> e9549c2ce50ccb47c5041f7022ce462043a1f230
       );
     }
   }

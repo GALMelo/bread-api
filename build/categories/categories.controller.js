@@ -8,69 +8,23 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var __param = (this && this.__param) || function (paramIndex, decorator) {
-    return function (target, key) { decorator(target, key, paramIndex); }
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CategoriesController = void 0;
 var common_1 = require("@nestjs/common");
 var categories_service_1 = require("./categories.service");
-var create_category_dto_1 = require("../dto/create-category.dto");
-var update_category_dto_1 = require("../dto/update-category.dto");
 var CategoriesController = /** @class */ (function () {
     function CategoriesController(categoriesService) {
         this.categoriesService = categoriesService;
     }
-    CategoriesController.prototype.create = function (createCategoryDto) {
-        return this.categoriesService.create(createCategoryDto);
-    };
     CategoriesController.prototype.findAll = function () {
         return this.categoriesService.findAll();
     };
-    CategoriesController.prototype.findOne = function (id) {
-        return this.categoriesService.findOne(+id);
-    };
-    CategoriesController.prototype.update = function (id, updateCategoryDto) {
-        return this.categoriesService.update(+id, updateCategoryDto);
-    };
-    CategoriesController.prototype.remove = function (id) {
-        return this.categoriesService.remove(+id);
-    };
-    __decorate([
-        (0, common_1.Post)(),
-        __param(0, (0, common_1.Body)()),
-        __metadata("design:type", Function),
-        __metadata("design:paramtypes", [create_category_dto_1.CreateCategoryDto]),
-        __metadata("design:returntype", void 0)
-    ], CategoriesController.prototype, "create", null);
     __decorate([
         (0, common_1.Get)(),
         __metadata("design:type", Function),
         __metadata("design:paramtypes", []),
         __metadata("design:returntype", void 0)
     ], CategoriesController.prototype, "findAll", null);
-    __decorate([
-        (0, common_1.Get)(':id'),
-        __param(0, (0, common_1.Param)('id')),
-        __metadata("design:type", Function),
-        __metadata("design:paramtypes", [String]),
-        __metadata("design:returntype", void 0)
-    ], CategoriesController.prototype, "findOne", null);
-    __decorate([
-        (0, common_1.Patch)(':id'),
-        __param(0, (0, common_1.Param)('id')),
-        __param(1, (0, common_1.Body)()),
-        __metadata("design:type", Function),
-        __metadata("design:paramtypes", [String, update_category_dto_1.UpdateCategoryDto]),
-        __metadata("design:returntype", void 0)
-    ], CategoriesController.prototype, "update", null);
-    __decorate([
-        (0, common_1.Delete)(':id'),
-        __param(0, (0, common_1.Param)('id')),
-        __metadata("design:type", Function),
-        __metadata("design:paramtypes", [String]),
-        __metadata("design:returntype", void 0)
-    ], CategoriesController.prototype, "remove", null);
     CategoriesController = __decorate([
         (0, common_1.Controller)('categories'),
         __metadata("design:paramtypes", [categories_service_1.CategoriesService])
