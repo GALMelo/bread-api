@@ -44,70 +44,94 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ProductsService = void 0;
 var common_1 = require("@nestjs/common");
+var product_entity_1 = require("../entities/product.entity");
 var typeorm_1 = require("typeorm");
 var category_entity_1 = require("../entities/category.entity");
-var product_entity_1 = require("../entities/product.entity");
 var ProductsService = /** @class */ (function () {
     function ProductsService() {
     }
-    ProductsService.prototype.create = function (product) {
+    ProductsService.prototype.create = function (createProductDto) {
         return __awaiter(this, void 0, void 0, function () {
-            var newProduct, category, saveProd, error_1;
+            var category, newProduct, saveProduct, error_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 3, , 4]);
-                        newProduct = (0, typeorm_1.getRepository)(product_entity_1.Product).create();
-                        return [4 /*yield*/, (0, typeorm_1.getRepository)(category_entity_1.Category).findOne({
-                                id: product.categoryId,
-                            })];
+                        _a.trys.push([0, 5, , 6]);
+                        return [4 /*yield*/, (0, typeorm_1.getRepository)(category_entity_1.Category).findOne({ id: createProductDto.category_id })];
                     case 1:
                         category = _a.sent();
+                        if (!category) return [3 /*break*/, 3];
+                        newProduct = (0, typeorm_1.getRepository)(product_entity_1.Product).create();
                         newProduct.category = category;
-                        newProduct.description = product.description;
-                        newProduct.price = product.price;
-                        newProduct.qty = product.qty;
+                        newProduct.name = createProductDto.name;
+                        newProduct.description = createProductDto.description;
+                        newProduct.price = createProductDto.price;
+                        newProduct.image_url = createProductDto.image_url;
                         return [4 /*yield*/, (0, typeorm_1.getRepository)(product_entity_1.Product).save(newProduct)];
                     case 2:
-                        saveProd = _a.sent();
-                        return [2 /*return*/, saveProd];
-                    case 3:
+                        saveProduct = _a.sent();
+                        return [2 /*return*/, saveProduct];
+                    case 3: throw new Error('Category not found.');
+                    case 4: return [3 /*break*/, 6];
+                    case 5:
                         error_1 = _a.sent();
                         throw new common_1.HttpException({
-                            status: common_1.HttpStatus.FORBIDDEN,
+                            status: common_1.HttpStatus.BAD_REQUEST,
                             error: error_1.message,
-                        }, common_1.HttpStatus.FORBIDDEN);
-                    case 4: return [2 /*return*/];
+                        }, common_1.HttpStatus.BAD_REQUEST);
+                    case 6: return [2 /*return*/];
                 }
             });
         });
     };
-    ProductsService.prototype.findAll = function () {
+    ProductsService.prototype.findAll = function (query) {
         return __awaiter(this, void 0, void 0, function () {
-            var result, error_2;
+            var error_2;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, (0, typeorm_1.getRepository)(product_entity_1.Product)
-                                .createQueryBuilder('product')
-                                .getMany()];
-                    case 1:
-                        result = _a.sent();
-                        return [2 /*return*/, { products: result }];
+                        return [4 /*yield*/, (0, typeorm_1.getRepository)(product_entity_1.Product).find({
+                                relations: ["category"],
+                                where: Object.keys(query).length > 0 && (query.category || query.search) ? {
+                                    category: query.category ? { name: query.category } : {},
+                                    name: query.search ? (0, typeorm_1.Like)("%".concat(query.search, "%")) : (0, typeorm_1.Like)('%%'),
+                                } : {},
+                                take: Object.keys(query).length > 0 && query.limit ? Number(query.limit) : 0,
+                            })];
+                    case 1: return [2 /*return*/, _a.sent()];
                     case 2:
                         error_2 = _a.sent();
                         throw new common_1.HttpException({
-                            status: common_1.HttpStatus.FORBIDDEN,
+                            status: common_1.HttpStatus.BAD_REQUEST,
                             error: error_2.message,
-                        }, common_1.HttpStatus.FORBIDDEN);
+                        }, common_1.HttpStatus.BAD_REQUEST);
                     case 3: return [2 /*return*/];
                 }
             });
         });
     };
     ProductsService.prototype.findOne = function (id) {
-        return "This action returns a #".concat(id, " product");
+        return __awaiter(this, void 0, void 0, function () {
+            var error_3;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, (0, typeorm_1.getRepository)(product_entity_1.Product).findOne(id, {
+                                relations: ["category"],
+                            })];
+                    case 1: return [2 /*return*/, _a.sent()];
+                    case 2:
+                        error_3 = _a.sent();
+                        throw new common_1.HttpException({
+                            status: common_1.HttpStatus.BAD_REQUEST,
+                            error: error_3.message,
+                        }, common_1.HttpStatus.BAD_REQUEST);
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
     };
     ProductsService.prototype.update = function (id, updateProductDto) {
         return "This action updates a #".concat(id, " product");

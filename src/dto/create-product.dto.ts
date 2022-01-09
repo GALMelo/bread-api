@@ -2,7 +2,10 @@ import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateProductDto {
   @ApiProperty({ type: Number })
-  categoryId: number;
+  category_id: number;
+
+  @ApiProperty({ type: String })
+  name: string;
 
   @ApiProperty({ type: String })
   description: string;
@@ -10,6 +13,12 @@ export class CreateProductDto {
   @ApiProperty({ type: Number })
   price: number;
 
+  @ApiProperty({ type: String })
+  image_url: string;
+
   @ApiProperty({ type: Number })
-  qty: number;
+  qty?: number;
+
+  @ApiProperty({ type: Number })
+  sold?: number;
 }

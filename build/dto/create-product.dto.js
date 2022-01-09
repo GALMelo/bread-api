@@ -17,7 +17,11 @@ var CreateProductDto = /** @class */ (function () {
     __decorate([
         (0, swagger_1.ApiProperty)({ type: Number }),
         __metadata("design:type", Number)
-    ], CreateProductDto.prototype, "categoryId", void 0);
+    ], CreateProductDto.prototype, "category_id", void 0);
+    __decorate([
+        (0, swagger_1.ApiProperty)({ type: String }),
+        __metadata("design:type", String)
+    ], CreateProductDto.prototype, "name", void 0);
     __decorate([
         (0, swagger_1.ApiProperty)({ type: String }),
         __metadata("design:type", String)
@@ -27,9 +31,17 @@ var CreateProductDto = /** @class */ (function () {
         __metadata("design:type", Number)
     ], CreateProductDto.prototype, "price", void 0);
     __decorate([
+        (0, swagger_1.ApiProperty)({ type: String }),
+        __metadata("design:type", String)
+    ], CreateProductDto.prototype, "image_url", void 0);
+    __decorate([
         (0, swagger_1.ApiProperty)({ type: Number }),
         __metadata("design:type", Number)
     ], CreateProductDto.prototype, "qty", void 0);
+    __decorate([
+        (0, swagger_1.ApiProperty)({ type: Number }),
+        __metadata("design:type", Number)
+    ], CreateProductDto.prototype, "sold", void 0);
     return CreateProductDto;
 }());
 exports.CreateProductDto = CreateProductDto;
