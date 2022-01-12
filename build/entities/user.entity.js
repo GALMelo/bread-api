@@ -35,9 +35,9 @@ var User = /** @class */ (function () {
         __metadata("design:type", String)
     ], User.prototype, "password", void 0);
     __decorate([
-        (0, typeorm_1.Column)(),
+        (0, typeorm_1.Column)({ default: 'user' }),
         __metadata("design:type", String)
-    ], User.prototype, "tipo_user", void 0);
+    ], User.prototype, "type_user", void 0);
     User = __decorate([
         (0, typeorm_1.Entity)()
     ], User);

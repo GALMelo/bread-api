@@ -23,21 +23,19 @@ var UsersController = /** @class */ (function () {
     UsersController.prototype.create = function (createUserDto) {
         return this.usersService.create(createUserDto);
     };
-    UsersController.prototype.login = function (request) {
-        var email = request.query.email;
-        var password = request.query.password;
-        return this.usersService.login(email, password);
+    UsersController.prototype.login = function (body) {
+        return this.usersService.login(body);
     };
     __decorate([
-        (0, common_1.Post)(),
+        (0, common_1.Post)('/register'),
         __param(0, (0, common_1.Body)()),
         __metadata("design:type", Function),
         __metadata("design:paramtypes", [create_user_dto_1.CreateUserDto]),
         __metadata("design:returntype", void 0)
     ], UsersController.prototype, "create", null);
     __decorate([
-        (0, common_1.Get)(),
-        __param(0, (0, common_1.Request)()),
+        (0, common_1.Post)('/login'),
+        __param(0, (0, common_1.Body)()),
         __metadata("design:type", Function),
         __metadata("design:paramtypes", [Object]),
         __metadata("design:returntype", void 0)
