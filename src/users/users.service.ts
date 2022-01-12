@@ -65,6 +65,14 @@ export class UsersService {
         email: userData.email,
         typeUser: userData.type_user,
       };
+
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: 'Invalidate data.',
+        },
+        HttpStatus.BAD_REQUEST,
+      );
     } else {
       return 'User not found';
     }

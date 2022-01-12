@@ -22,6 +22,9 @@ var ProductsController = /** @class */ (function () {
     ProductsController.prototype.findAll = function (query) {
         return this.productsService.findAll(query);
     };
+    ProductsController.prototype.findOne = function (id) {
+        return this.productsService.findOne(id);
+    };
     __decorate([
         (0, common_1.Get)(),
         __param(0, (0, common_1.Query)()),
@@ -29,6 +32,13 @@ var ProductsController = /** @class */ (function () {
         __metadata("design:paramtypes", [Object]),
         __metadata("design:returntype", void 0)
     ], ProductsController.prototype, "findAll", null);
+    __decorate([
+        (0, common_1.Get)('/:id'),
+        __param(0, (0, common_1.Param)('id')),
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", [Object]),
+        __metadata("design:returntype", void 0)
+    ], ProductsController.prototype, "findOne", null);
     ProductsController = __decorate([
         (0, common_1.Controller)('products'),
         __metadata("design:paramtypes", [products_service_1.ProductsService])

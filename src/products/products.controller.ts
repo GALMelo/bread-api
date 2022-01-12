@@ -19,4 +19,9 @@ export class ProductsController {
   findAll(@Query() query) {
     return this.productsService.findAll(query);
   }
+
+  @Get('/:id')
+  findOne(@Param('id') id) {
+    return this.productsService.findOne(id);
+  }
 }
