@@ -12,28 +12,29 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ProductsController = void 0;
+exports.NewsletterController = void 0;
 var common_1 = require("@nestjs/common");
-var products_service_1 = require("./products.service");
-var ProductsController = /** @class */ (function () {
-    function ProductsController(productsService) {
-        this.productsService = productsService;
+var newsletter_service_1 = require("./newsletter.service");
+var create_newsletter_dto_1 = require("../dto/create-newsletter.dto");
+var NewsletterController = /** @class */ (function () {
+    function NewsletterController(newsletterService) {
+        this.newsletterService = newsletterService;
     }
-    ProductsController.prototype.findAll = function (query) {
-        return this.productsService.findAll(query);
+    NewsletterController.prototype.create = function (createNewsletterDto) {
+        return this.newsletterService.create(createNewsletterDto);
     };
     __decorate([
-        (0, common_1.Get)(),
-        __param(0, (0, common_1.Query)()),
+        (0, common_1.Post)(),
+        __param(0, (0, common_1.Body)()),
         __metadata("design:type", Function),
-        __metadata("design:paramtypes", [Object]),
+        __metadata("design:paramtypes", [create_newsletter_dto_1.CreateNewsletterDto]),
         __metadata("design:returntype", void 0)
-    ], ProductsController.prototype, "findAll", null);
-    ProductsController = __decorate([
-        (0, common_1.Controller)('products'),
-        __metadata("design:paramtypes", [products_service_1.ProductsService])
-    ], ProductsController);
-    return ProductsController;
+    ], NewsletterController.prototype, "create", null);
+    NewsletterController = __decorate([
+        (0, common_1.Controller)('newsletter'),
+        __metadata("design:paramtypes", [newsletter_service_1.NewsletterService])
+    ], NewsletterController);
+    return NewsletterController;
 }());
-exports.ProductsController = ProductsController;
-//# sourceMappingURL=products.controller.js.map
+exports.NewsletterController = NewsletterController;
+//# sourceMappingURL=newsletter.controller.js.map
