@@ -20,10 +20,8 @@ export class UsersController {
     return this.usersService.create(createUserDto);
   }
 
-  @Get()
-  login(@Request() request) {
-    const email = request.query.email;
-    const password = request.query.password;
-    return this.usersService.login(email, password);
+  @Post()
+  login(@Body() body: any) {
+    return this.usersService.login(body);
   }
 }
