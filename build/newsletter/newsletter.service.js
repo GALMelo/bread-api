@@ -42,84 +42,42 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UsersService = void 0;
+exports.NewsletterService = void 0;
 var common_1 = require("@nestjs/common");
 var typeorm_1 = require("typeorm");
-var user_entity_1 = require("../entities/user.entity");
-var bcrypt = require('bcryptjs');
-var UsersService = /** @class */ (function () {
-    function UsersService() {
+var newsletter_entity_1 = require("../entities/newsletter.entity");
+var NewsletterService = /** @class */ (function () {
+    function NewsletterService() {
     }
-    UsersService.prototype.create = function (user) {
+    NewsletterService.prototype.create = function (news) {
         return __awaiter(this, void 0, void 0, function () {
-            var newUser_1;
-            return __generator(this, function (_a) {
-                try {
-                    newUser_1 = (0, typeorm_1.getRepository)(user_entity_1.User).create();
-                    bcrypt.genSalt(10, function (err, salt) {
-                        bcrypt.hash(user.password, salt, function (err, hash) {
-                            return __awaiter(this, void 0, void 0, function () {
-                                var saveUser;
-                                return __generator(this, function (_a) {
-                                    switch (_a.label) {
-                                        case 0:
-                                            newUser_1.firstName = user.firstName;
-                                            newUser_1.lastName = user.lastName;
-                                            newUser_1.password = hash;
-                                            newUser_1.email = user.email;
-                                            newUser_1.tipo_user = user.tipoUser;
-                                            return [4 /*yield*/, (0, typeorm_1.getRepository)(user_entity_1.User).save(newUser_1)];
-                                        case 1:
-                                            saveUser = _a.sent();
-                                            return [2 /*return*/, saveUser];
-                                    }
-                                });
-                            });
-                        });
-                    });
-                }
-                catch (error) {
-                    throw new common_1.HttpException({
-                        status: common_1.HttpStatus.FORBIDDEN,
-                        error: error.message,
-                    }, common_1.HttpStatus.FORBIDDEN);
-                }
-                return [2 /*return*/];
-            });
-        });
-    };
-    UsersService.prototype.login = function (email, password) {
-        return __awaiter(this, void 0, void 0, function () {
-            var userData;
+            var newNews, saveNews, error_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, (0, typeorm_1.getRepository)(user_entity_1.User).findOne({
-                            where: { email: email },
-                        })];
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        newNews = (0, typeorm_1.getRepository)(newsletter_entity_1.Newsletter).create();
+                        newNews.name = news.name;
+                        newNews.email = news.email;
+                        return [4 /*yield*/, (0, typeorm_1.getRepository)(newsletter_entity_1.Newsletter).save(newNews)];
                     case 1:
-                        userData = _a.sent();
-                        if (userData) {
-                            bcrypt.compare(password, userData.password, function (err, res) {
-                                if (err) {
-                                    return err;
-                                }
-                                else {
-                                    return userData;
-                                }
-                            });
-                        }
-                        else {
-                            return [2 /*return*/, 'User not found'];
-                        }
-                        return [2 /*return*/];
+                        saveNews = _a.sent();
+                        return [2 /*return*/, saveNews];
+                    case 2:
+                        error_1 = _a.sent();
+                        throw new common_1.HttpException({
+                            status: common_1.HttpStatus.FORBIDDEN,
+                            error: error_1.message,
+                        }, common_1.HttpStatus.FORBIDDEN);
+                    case 3: return [2 /*return*/];
                 }
             });
         });
     };
-    UsersService = __decorate([
+    NewsletterService = __decorate([
         (0, common_1.Injectable)()
-    ], UsersService);
-    return UsersService;
+    ], NewsletterService);
+    return NewsletterService;
 }());
-exports.UsersService = UsersService;
-//# sourceMappingURL=users.service.js.map
+exports.NewsletterService = NewsletterService;
+//# sourceMappingURL=newsletter.service.js.map

@@ -18,6 +18,8 @@ var products_module_1 = require("./products/products.module");
 var categories_module_1 = require("./categories/categories.module");
 var product_entity_1 = require("./entities/product.entity");
 var category_entity_1 = require("./entities/category.entity");
+var newsletter_module_1 = require("./newsletter/newsletter.module");
+var newsletter_entity_1 = require("./entities/newsletter.entity");
 dotenv.config();
 var AppModule = /** @class */ (function () {
     function AppModule() {
@@ -32,13 +34,14 @@ var AppModule = /** @class */ (function () {
                     username: process.env.DATABASE_USER,
                     password: process.env.DATABASE_PASSWORD,
                     database: process.env.DATABASE_NAME,
-                    entities: [user_entity_1.User, product_entity_1.Product, category_entity_1.Category],
+                    entities: [user_entity_1.User, product_entity_1.Product, category_entity_1.Category, newsletter_entity_1.Newsletter],
                     synchronize: true,
                     logging: ['error'],
                 }),
                 users_module_1.UsersModule,
                 products_module_1.ProductsModule,
                 categories_module_1.CategoriesModule,
+                newsletter_module_1.NewsletterModule,
             ],
             controllers: [app_controller_1.AppController],
             providers: [app_service_1.AppService],

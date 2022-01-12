@@ -9,6 +9,8 @@ import { ProductsModule } from './products/products.module';
 import { CategoriesModule } from './categories/categories.module';
 import { Product } from './entities/product.entity';
 import { Category } from './entities/category.entity';
+import { NewsletterModule } from './newsletter/newsletter.module';
+import { Newsletter } from './entities/newsletter.entity';
 
 dotenv.config();
 @Module({
@@ -20,13 +22,14 @@ dotenv.config();
       username: process.env.DATABASE_USER,
       password: process.env.DATABASE_PASSWORD,
       database: process.env.DATABASE_NAME,
-      entities: [User, Product, Category],
+      entities: [User, Product, Category, Newsletter],
       synchronize: true,
       logging: ['error'],
     }),
     UsersModule,
     ProductsModule,
     CategoriesModule,
+    NewsletterModule,
   ],
   controllers: [AppController],
   providers: [AppService],

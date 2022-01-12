@@ -57,7 +57,9 @@ var ProductsService = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 5, , 6]);
-                        return [4 /*yield*/, (0, typeorm_1.getRepository)(category_entity_1.Category).findOne({ id: createProductDto.category_id })];
+                        return [4 /*yield*/, (0, typeorm_1.getRepository)(category_entity_1.Category).findOne({
+                                id: createProductDto.category_id,
+                            })];
                     case 1:
                         category = _a.sent();
                         if (!category) return [3 /*break*/, 3];
@@ -92,12 +94,16 @@ var ProductsService = /** @class */ (function () {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, (0, typeorm_1.getRepository)(product_entity_1.Product).find({
-                                relations: ["category"],
-                                where: Object.keys(query).length > 0 && (query.category || query.search) ? {
-                                    category: query.category ? { name: query.category } : {},
-                                    name: query.search ? (0, typeorm_1.Like)("%".concat(query.search, "%")) : (0, typeorm_1.Like)('%%'),
-                                } : {},
-                                take: Object.keys(query).length > 0 && query.limit ? Number(query.limit) : 0,
+                                relations: ['category'],
+                                where: Object.keys(query).length > 0 && (query.category || query.search)
+                                    ? {
+                                        category: query.category ? { name: query.category } : {},
+                                        name: query.search ? (0, typeorm_1.Like)("%".concat(query.search, "%")) : (0, typeorm_1.Like)('%%'),
+                                    }
+                                    : {},
+                                take: Object.keys(query).length > 0 && query.limit
+                                    ? Number(query.limit)
+                                    : 0,
                             })];
                     case 1: return [2 /*return*/, _a.sent()];
                     case 2:
@@ -119,7 +125,7 @@ var ProductsService = /** @class */ (function () {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, (0, typeorm_1.getRepository)(product_entity_1.Product).findOne(id, {
-                                relations: ["category"],
+                                relations: ['category'],
                             })];
                     case 1: return [2 /*return*/, _a.sent()];
                     case 2:
@@ -132,12 +138,6 @@ var ProductsService = /** @class */ (function () {
                 }
             });
         });
-    };
-    ProductsService.prototype.update = function (id, updateProductDto) {
-        return "This action updates a #".concat(id, " product");
-    };
-    ProductsService.prototype.remove = function (id) {
-        return "This action removes a #".concat(id, " product");
     };
     ProductsService = __decorate([
         (0, common_1.Injectable)()
