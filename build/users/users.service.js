@@ -123,9 +123,11 @@ var UsersService = /** @class */ (function () {
                                     email: userData.email,
                                     typeUser: userData.type_user,
                                 }];
-                        return [3 /*break*/, 4];
+                        throw new common_1.HttpException({
+                            status: common_1.HttpStatus.BAD_REQUEST,
+                            error: 'Invalidate data.',
+                        }, common_1.HttpStatus.BAD_REQUEST);
                     case 3: return [2 /*return*/, 'User not found'];
-                    case 4: return [2 /*return*/];
                 }
             });
         });
