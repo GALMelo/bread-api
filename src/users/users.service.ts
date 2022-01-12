@@ -34,12 +34,12 @@ export class UsersService {
     }
   }
 
-  async login(email, password) {
+  async login(body) {
     const userData = await getRepository(User).findOne({
-      where: { email: email },
+      where: { email: body.email },
     });
     if (userData) {
-      bcrypt.compare(password, userData.password, function (err, res) {
+      bcrypt.compare(body.password, userData.password, function (err, res) {
         if (err) {
           return err;
         } else {
