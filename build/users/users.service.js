@@ -52,66 +52,80 @@ var UsersService = /** @class */ (function () {
     }
     UsersService.prototype.create = function (user) {
         return __awaiter(this, void 0, void 0, function () {
-            var newUser_1;
-            return __generator(this, function (_a) {
-                try {
-                    newUser_1 = (0, typeorm_1.getRepository)(user_entity_1.User).create();
-                    bcrypt.genSalt(10, function (err, salt) {
-                        bcrypt.hash(user.password, salt, function (err, hash) {
-                            return __awaiter(this, void 0, void 0, function () {
-                                var saveUser;
-                                return __generator(this, function (_a) {
-                                    switch (_a.label) {
-                                        case 0:
-                                            newUser_1.firstName = user.firstName;
-                                            newUser_1.lastName = user.lastName;
-                                            newUser_1.password = hash;
-                                            newUser_1.email = user.email;
-                                            newUser_1.tipo_user = user.tipoUser;
-                                            return [4 /*yield*/, (0, typeorm_1.getRepository)(user_entity_1.User).save(newUser_1)];
-                                        case 1:
-                                            saveUser = _a.sent();
-                                            return [2 /*return*/, saveUser];
-                                    }
-                                });
-                            });
-                        });
-                    });
-                }
-                catch (error) {
-                    throw new common_1.HttpException({
-                        status: common_1.HttpStatus.FORBIDDEN,
-                        error: error.message,
-                    }, common_1.HttpStatus.FORBIDDEN);
-                }
-                return [2 /*return*/];
-            });
-        });
-    };
-    UsersService.prototype.login = function (email, password) {
-        return __awaiter(this, void 0, void 0, function () {
-            var userData;
+            var userData, newUser, salt, hash, saveUser, error_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, (0, typeorm_1.getRepository)(user_entity_1.User).findOne({
-                            where: { email: email },
-                        })];
+                    case 0:
+                        _a.trys.push([0, 5, , 6]);
+                        return [4 /*yield*/, (0, typeorm_1.getRepository)(user_entity_1.User).findOne({
+                                where: { email: user.email },
+                            })];
                     case 1:
                         userData = _a.sent();
                         if (userData) {
-                            bcrypt.compare(password, userData.password, function (err, res) {
-                                if (err) {
-                                    return err;
-                                }
-                                else {
-                                    return userData;
-                                }
-                            });
+                            throw new common_1.HttpException({
+                                status: common_1.HttpStatus.FORBIDDEN,
+                                error: 'User already exists.',
+                            }, common_1.HttpStatus.FORBIDDEN);
                         }
-                        else {
-                            return [2 /*return*/, 'User not found'];
-                        }
-                        return [2 /*return*/];
+                        newUser = (0, typeorm_1.getRepository)(user_entity_1.User).create();
+                        return [4 /*yield*/, bcrypt.genSalt(10)];
+                    case 2:
+                        salt = _a.sent();
+                        return [4 /*yield*/, bcrypt.hash(user.password, salt)];
+                    case 3:
+                        hash = _a.sent();
+                        newUser.firstName = user.firstName;
+                        newUser.lastName = user.lastName;
+                        newUser.password = hash;
+                        newUser.email = user.email;
+                        newUser.type_user = user.typeUser;
+                        return [4 /*yield*/, (0, typeorm_1.getRepository)(user_entity_1.User).save(newUser)];
+                    case 4:
+                        saveUser = _a.sent();
+                        if (saveUser)
+                            return [2 /*return*/, {
+                                    id: saveUser.id,
+                                    name: saveUser.firstName + ' ' + saveUser.lastName,
+                                    email: saveUser.email,
+                                    typeUser: saveUser.type_user,
+                                }];
+                        return [3 /*break*/, 6];
+                    case 5:
+                        error_1 = _a.sent();
+                        throw new common_1.HttpException({
+                            status: common_1.HttpStatus.FORBIDDEN,
+                            error: error_1.message,
+                        }, common_1.HttpStatus.FORBIDDEN);
+                    case 6: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    UsersService.prototype.login = function (body) {
+        return __awaiter(this, void 0, void 0, function () {
+            var userData, result;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, (0, typeorm_1.getRepository)(user_entity_1.User).findOne({
+                            where: { email: body.email },
+                        })];
+                    case 1:
+                        userData = _a.sent();
+                        if (!userData) return [3 /*break*/, 3];
+                        return [4 /*yield*/, bcrypt.compare(String(body.password), userData.password)];
+                    case 2:
+                        result = _a.sent();
+                        if (result)
+                            return [2 /*return*/, {
+                                    id: userData.id,
+                                    name: userData.firstName + ' ' + userData.lastName,
+                                    email: userData.email,
+                                    typeUser: userData.type_user,
+                                }];
+                        return [3 /*break*/, 4];
+                    case 3: return [2 /*return*/, 'User not found'];
+                    case 4: return [2 /*return*/];
                 }
             });
         });

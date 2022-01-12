@@ -8,21 +8,40 @@ var bcrypt = require('bcryptjs');
 export class UsersService {
   async create(user: CreateUserDto) {
     try {
+
+      const userData = await getRepository(User).findOne({
+        where: { email: user.email },
+      });
+
+      if (userData) {
+        throw new HttpException(
+          {
+            status: HttpStatus.FORBIDDEN,
+            error: 'User already exists.',
+          },
+          HttpStatus.FORBIDDEN,
+        );
+      }
+
       const newUser = getRepository(User).create();
 
-      bcrypt.genSalt(10, function (err, salt) {
-        bcrypt.hash(user.password, salt, async function (err, hash) {
-          newUser.firstName = user.firstName;
-          newUser.lastName = user.lastName;
-          newUser.password = hash;
-          newUser.email = user.email;
-          newUser.tipo_user = user.tipoUser;
+      const salt = await bcrypt.genSalt(10);
+      const hash = await bcrypt.hash(user.password, salt);
 
-          const saveUser = await getRepository(User).save(newUser);
+      newUser.firstName = user.firstName;
+      newUser.lastName = user.lastName;
+      newUser.password = hash;
+      newUser.email = user.email;
+      newUser.type_user = user.typeUser;
 
-          return saveUser;
-        });
-      });
+      const saveUser = await getRepository(User).save(newUser);
+
+      if (saveUser) return {
+        id: saveUser.id,
+        name: saveUser.firstName + ' ' + saveUser.lastName,
+        email: saveUser.email,
+        typeUser: saveUser.type_user,
+      };
     } catch (error) {
       throw new HttpException(
         {
@@ -39,13 +58,13 @@ export class UsersService {
       where: { email: body.email },
     });
     if (userData) {
-      bcrypt.compare(body.password, userData.password, function (err, res) {
-        if (err) {
-          return err;
-        } else {
-          return userData;
-        }
-      });
+      let result = await bcrypt.compare(String(body.password), userData.password);
+      if (result) return {
+        id: userData.id,
+        name: userData.firstName + ' ' + userData.lastName,
+        email: userData.email,
+        typeUser: userData.type_user,
+      };
     } else {
       return 'User not found';
     }
