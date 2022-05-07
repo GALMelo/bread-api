@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  Query,
 } from '@nestjs/common';
 import { StockService } from './stock.service';
 import { CreateStockDto } from '../dto/create-stock.dto';
@@ -21,8 +22,8 @@ export class StockController {
   }
 
   @Get()
-  findAll() {
-    return this.stockService.findAll();
+  findAll(@Query() query) {
+    return this.stockService.find(query);
   }
 
   @Get(':id')

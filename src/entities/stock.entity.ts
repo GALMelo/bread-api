@@ -21,5 +21,5 @@ export class Stock {
   dt_last_buy: Date;
 
   @Column()
-  last_guy_qty: number;
+  last_buy_qty: number;
 }

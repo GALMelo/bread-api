@@ -88,18 +88,18 @@ var UsersService = /** @class */ (function () {
             });
         });
     };
-    UsersService.prototype.login = function (email, password) {
+    UsersService.prototype.login = function (body) {
         return __awaiter(this, void 0, void 0, function () {
             var userData;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, (0, typeorm_1.getRepository)(user_entity_1.User).findOne({
-                            where: { email: email },
+                            where: { email: body.email },
                         })];
                     case 1:
                         userData = _a.sent();
                         if (userData) {
-                            bcrypt.compare(password, userData.password, function (err, res) {
+                            bcrypt.compare(body.password, userData.password, function (err, res) {
                                 if (err) {
                                     return err;
                                 }
