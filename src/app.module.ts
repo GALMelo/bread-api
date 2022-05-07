@@ -11,6 +11,10 @@ import { Product } from './entities/product.entity';
 import { Category } from './entities/category.entity';
 import { NewsletterModule } from './newsletter/newsletter.module';
 import { Newsletter } from './entities/newsletter.entity';
+import { StockModule } from './stock/stock.module';
+import { Stock } from './entities/stock.entity';
+import { StockCategoryModule } from './stock-category/stock-category.module';
+import { StockCategory } from './entities/stock-category.entity';
 
 dotenv.config();
 @Module({
@@ -22,7 +26,7 @@ dotenv.config();
       username: process.env.DATABASE_USER,
       password: process.env.DATABASE_PASSWORD,
       database: process.env.DATABASE_NAME,
-      entities: [User, Product, Category, Newsletter],
+      entities: [User, Product, Category, Newsletter, Stock, StockCategory],
       synchronize: true,
       logging: ['error'],
     }),
@@ -30,6 +34,8 @@ dotenv.config();
     ProductsModule,
     CategoriesModule,
     NewsletterModule,
+    StockModule,
+    StockCategoryModule,
   ],
   controllers: [AppController],
   providers: [AppService],
