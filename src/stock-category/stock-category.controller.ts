@@ -25,11 +25,6 @@ export class StockCategoryController {
     return this.stockCategoryService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.stockCategoryService.findOne(+id);
-  }
-
   @Patch(':id')
   update(
     @Param('id') id: string,
