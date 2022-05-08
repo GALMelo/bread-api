@@ -20,6 +20,10 @@ var product_entity_1 = require("./entities/product.entity");
 var category_entity_1 = require("./entities/category.entity");
 var newsletter_module_1 = require("./newsletter/newsletter.module");
 var newsletter_entity_1 = require("./entities/newsletter.entity");
+var stock_module_1 = require("./stock/stock.module");
+var stock_entity_1 = require("./entities/stock.entity");
+var stock_category_module_1 = require("./stock-category/stock-category.module");
+var stock_category_entity_1 = require("./entities/stock-category.entity");
 dotenv.config();
 var AppModule = /** @class */ (function () {
     function AppModule() {
@@ -34,7 +38,7 @@ var AppModule = /** @class */ (function () {
                     username: process.env.DATABASE_USER,
                     password: process.env.DATABASE_PASSWORD,
                     database: process.env.DATABASE_NAME,
-                    entities: [user_entity_1.User, product_entity_1.Product, category_entity_1.Category, newsletter_entity_1.Newsletter],
+                    entities: [user_entity_1.User, product_entity_1.Product, category_entity_1.Category, newsletter_entity_1.Newsletter, stock_entity_1.Stock, stock_category_entity_1.StockCategory],
                     synchronize: true,
                     logging: ['error'],
                 }),
@@ -42,6 +46,8 @@ var AppModule = /** @class */ (function () {
                 products_module_1.ProductsModule,
                 categories_module_1.CategoriesModule,
                 newsletter_module_1.NewsletterModule,
+                stock_module_1.StockModule,
+                stock_category_module_1.StockCategoryModule,
             ],
             controllers: [app_controller_1.AppController],
             providers: [app_service_1.AppService],

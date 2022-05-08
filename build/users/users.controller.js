@@ -34,7 +34,11 @@ var UsersController = /** @class */ (function () {
         __metadata("design:returntype", void 0)
     ], UsersController.prototype, "create", null);
     __decorate([
+<<<<<<< HEAD
+        (0, common_1.Post)(),
+=======
         (0, common_1.Post)('/login'),
+>>>>>>> 792150b9219aa7a3aeb48259aa7f1b877eb1e2b2
         __param(0, (0, common_1.Body)()),
         __metadata("design:type", Function),
         __metadata("design:paramtypes", [Object]),
