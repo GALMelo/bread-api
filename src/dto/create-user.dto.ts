@@ -14,5 +14,5 @@ export class CreateUserDto {
   password: string;
 
   @ApiProperty({ type: String })
-  tipoUser: string;
+  typeUser: string;
 }

@@ -33,7 +33,7 @@ var CreateUserDto = /** @class */ (function () {
     __decorate([
         (0, swagger_1.ApiProperty)({ type: String }),
         __metadata("design:type", String)
-    ], CreateUserDto.prototype, "tipoUser", void 0);
+    ], CreateUserDto.prototype, "typeUser", void 0);
     return CreateUserDto;
 }());
 exports.CreateUserDto = CreateUserDto;

@@ -17,6 +17,6 @@ export class User {
   @Column()
   password: string;
 
-  @Column()
-  tipo_user: string;
+  @Column({default: 'user'})
+  type_user: string;
 }
