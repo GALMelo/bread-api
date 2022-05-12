@@ -18,6 +18,9 @@ export class Stock {
   qty?: number;
 
   @Column()
+  dt_buy: Date;
+
+  @Column()
   dt_last_buy: Date;
 
   @Column()

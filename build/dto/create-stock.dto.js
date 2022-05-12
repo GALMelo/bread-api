@@ -29,6 +29,10 @@ var CreateStockDto = /** @class */ (function () {
     __decorate([
         (0, swagger_1.ApiProperty)({ type: Date }),
         __metadata("design:type", Date)
+    ], CreateStockDto.prototype, "dt_buy", void 0);
+    __decorate([
+        (0, swagger_1.ApiProperty)({ type: Date }),
+        __metadata("design:type", Date)
     ], CreateStockDto.prototype, "dt_last_buy", void 0);
     __decorate([
         (0, swagger_1.ApiProperty)({ type: Number }),

@@ -36,6 +36,10 @@ var Stock = /** @class */ (function () {
     __decorate([
         (0, typeorm_1.Column)(),
         __metadata("design:type", Date)
+    ], Stock.prototype, "dt_buy", void 0);
+    __decorate([
+        (0, typeorm_1.Column)(),
+        __metadata("design:type", Date)
     ], Stock.prototype, "dt_last_buy", void 0);
     __decorate([
         (0, typeorm_1.Column)(),

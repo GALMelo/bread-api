@@ -11,6 +11,9 @@ export class CreateStockDto {
   qty?: number;
 
   @ApiProperty({ type: Date })
+  dt_buy: Date;
+
+  @ApiProperty({ type: Date })
   dt_last_buy: Date;
 
   @ApiProperty({ type: Number })
