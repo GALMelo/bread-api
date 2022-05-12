@@ -112,22 +112,6 @@ var UsersService = /** @class */ (function () {
                         })];
                     case 1:
                         userData = _a.sent();
-<<<<<<< HEAD
-                        if (userData) {
-                            bcrypt.compare(body.password, userData.password, function (err, res) {
-                                if (err) {
-                                    return err;
-                                }
-                                else {
-                                    return userData;
-                                }
-                            });
-                        }
-                        else {
-                            return [2 /*return*/, 'User not found'];
-                        }
-                        return [2 /*return*/];
-=======
                         if (!userData) return [3 /*break*/, 3];
                         return [4 /*yield*/, bcrypt.compare(String(body.password), userData.password)];
                     case 2:
@@ -144,7 +128,6 @@ var UsersService = /** @class */ (function () {
                             error: 'Invalidate data.',
                         }, common_1.HttpStatus.BAD_REQUEST);
                     case 3: return [2 /*return*/, 'User not found'];
->>>>>>> 792150b9219aa7a3aeb48259aa7f1b877eb1e2b2
                 }
             });
         });

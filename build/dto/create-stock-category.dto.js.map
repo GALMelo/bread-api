@@ -1,1 +1,1 @@
-{"version":3,"file":"create-stock-category.dto.js","sourceRoot":"","sources":["../../src/dto/create-stock-category.dto.ts"],"names":[],"mappings":";;;AAAA;IAAA;IAAqC,CAAC;IAAD,6BAAC;AAAD,CAAC,AAAtC,IAAsC;AAAzB,wDAAsB"}
+{"version":3,"file":"create-stock-category.dto.js","sourceRoot":"","sources":["../../src/dto/create-stock-category.dto.ts"],"names":[],"mappings":";;;;;;;;;;;;AAAA,2CAA8C;AAE9C;IAAA;IAGA,CAAC;IADC;QADC,IAAA,qBAAW,EAAC,EAAE,IAAI,EAAE,MAAM,EAAE,CAAC;;wDACjB;IACf,6BAAC;CAAA,AAHD,IAGC;AAHY,wDAAsB"}

@@ -40,7 +40,7 @@ var Stock = /** @class */ (function () {
     __decorate([
         (0, typeorm_1.Column)(),
         __metadata("design:type", Number)
-    ], Stock.prototype, "last_guy_qty", void 0);
+    ], Stock.prototype, "last_buy_qty", void 0);
     Stock = __decorate([
         (0, typeorm_1.Entity)()
     ], Stock);

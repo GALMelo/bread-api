@@ -24,8 +24,8 @@ var StockController = /** @class */ (function () {
     StockController.prototype.create = function (createStockDto) {
         return this.stockService.create(createStockDto);
     };
-    StockController.prototype.findAll = function () {
-        return this.stockService.findAll();
+    StockController.prototype.findAll = function (query) {
+        return this.stockService.find(query);
     };
     StockController.prototype.findOne = function (id) {
         return this.stockService.findOne(+id);
@@ -45,8 +45,9 @@ var StockController = /** @class */ (function () {
     ], StockController.prototype, "create", null);
     __decorate([
         (0, common_1.Get)(),
+        __param(0, (0, common_1.Query)()),
         __metadata("design:type", Function),
-        __metadata("design:paramtypes", []),
+        __metadata("design:paramtypes", [Object]),
         __metadata("design:returntype", void 0)
     ], StockController.prototype, "findAll", null);
     __decorate([

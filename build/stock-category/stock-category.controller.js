@@ -27,9 +27,6 @@ var StockCategoryController = /** @class */ (function () {
     StockCategoryController.prototype.findAll = function () {
         return this.stockCategoryService.findAll();
     };
-    StockCategoryController.prototype.findOne = function (id) {
-        return this.stockCategoryService.findOne(+id);
-    };
     StockCategoryController.prototype.update = function (id, updateStockCategoryDto) {
         return this.stockCategoryService.update(+id, updateStockCategoryDto);
     };
@@ -49,13 +46,6 @@ var StockCategoryController = /** @class */ (function () {
         __metadata("design:paramtypes", []),
         __metadata("design:returntype", void 0)
     ], StockCategoryController.prototype, "findAll", null);
-    __decorate([
-        (0, common_1.Get)(':id'),
-        __param(0, (0, common_1.Param)('id')),
-        __metadata("design:type", Function),
-        __metadata("design:paramtypes", [String]),
-        __metadata("design:returntype", void 0)
-    ], StockCategoryController.prototype, "findOne", null);
     __decorate([
         (0, common_1.Patch)(':id'),
         __param(0, (0, common_1.Param)('id')),
