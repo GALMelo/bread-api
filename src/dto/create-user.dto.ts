@@ -8,6 +8,9 @@ export class CreateUserDto {
   lastName: string;
 
   @ApiProperty({ type: String })
+  phoneNumber: string;
+
+  @ApiProperty({ type: String })
   email: string;
 
   @ApiProperty({ type: String })

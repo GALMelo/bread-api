@@ -25,6 +25,10 @@ var CreateUserDto = /** @class */ (function () {
     __decorate([
         (0, swagger_1.ApiProperty)({ type: String }),
         __metadata("design:type", String)
+    ], CreateUserDto.prototype, "phoneNumber", void 0);
+    __decorate([
+        (0, swagger_1.ApiProperty)({ type: String }),
+        __metadata("design:type", String)
     ], CreateUserDto.prototype, "email", void 0);
     __decorate([
         (0, swagger_1.ApiProperty)({ type: String }),

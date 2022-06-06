@@ -77,6 +77,7 @@ var UsersService = /** @class */ (function () {
                         hash = _a.sent();
                         newUser.firstName = user.firstName;
                         newUser.lastName = user.lastName;
+                        newUser.phoneNumber = user.phoneNumber;
                         newUser.password = hash;
                         newUser.email = user.email;
                         newUser.type_user = user.typeUser;
@@ -87,6 +88,7 @@ var UsersService = /** @class */ (function () {
                             return [2 /*return*/, {
                                     id: saveUser.id,
                                     name: saveUser.firstName + ' ' + saveUser.lastName,
+                                    phoneNumber: saveUser.phoneNumber,
                                     email: saveUser.email,
                                     typeUser: saveUser.type_user,
                                 }];
@@ -120,6 +122,7 @@ var UsersService = /** @class */ (function () {
                             return [2 /*return*/, {
                                     id: userData.id,
                                     name: userData.firstName + ' ' + userData.lastName,
+                                    phoneNumber: userData.phoneNumber,
                                     email: userData.email,
                                     typeUser: userData.type_user,
                                 }];
