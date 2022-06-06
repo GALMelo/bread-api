@@ -1,7 +1,6 @@
 import { ApiProperty, PartialType } from '@nestjs/swagger';
-import { CreateStockDto } from './create-stock.dto';
 
-export class UpdateStockDto extends PartialType(CreateStockDto) {
+export class UpdateStockDto {
   @ApiProperty({ type: Number })
   category_stock_id: number;
 

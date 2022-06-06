@@ -1,4 +1,15 @@
 "use strict";
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -141,15 +152,31 @@ var StockService = /** @class */ (function () {
         });
     };
     StockService.prototype.update = function (id, updateStockDto) {
-        try {
-            return (0, typeorm_1.getRepository)(stock_entity_1.Stock).update(id, updateStockDto);
-        }
-        catch (error) {
-            throw new common_1.HttpException({
-                status: common_1.HttpStatus.BAD_REQUEST,
-                error: error.message,
-            }, common_1.HttpStatus.BAD_REQUEST);
-        }
+        return __awaiter(this, void 0, void 0, function () {
+            var categoryStockReposityory, categoryStock, error_4;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        categoryStockReposityory = (0, typeorm_1.getRepository)(stock_category_entity_1.StockCategory);
+                        return [4 /*yield*/, categoryStockReposityory.findOne(updateStockDto.category_stock_id)];
+                    case 1:
+                        categoryStock = _a.sent();
+                        if (categoryStock) {
+                            delete updateStockDto.category_stock_id;
+                            return [2 /*return*/, (0, typeorm_1.getRepository)(stock_entity_1.Stock).update(id, __assign(__assign({}, updateStockDto), { category_stock: categoryStock }))];
+                        }
+                        return [3 /*break*/, 3];
+                    case 2:
+                        error_4 = _a.sent();
+                        throw new common_1.HttpException({
+                            status: common_1.HttpStatus.BAD_REQUEST,
+                            error: error_4.message,
+                        }, common_1.HttpStatus.BAD_REQUEST);
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
     };
     StockService.prototype.remove = function (id) {
         try {

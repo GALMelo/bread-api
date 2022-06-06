@@ -2,6 +2,7 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { getRepository, Like } from 'typeorm';
 import { CreateStockDto } from '../dto/create-stock.dto';
 import { UpdateStockDto } from '../dto/update-stock.dto';
+import { Category } from '../entities/category.entity';
 import { StockCategory } from '../entities/stock-category.entity';
 import { Stock } from '../entities/stock.entity';
 
@@ -79,9 +80,15 @@ export class StockService {
     }
   }
 
-  update(id: number, updateStockDto: UpdateStockDto) {
+  async update(id: number, updateStockDto: UpdateStockDto) {
     try {
-      return getRepository(Stock).update(id, updateStockDto);
+
+      const categoryStockReposityory = getRepository(StockCategory);
+      const categoryStock = await categoryStockReposityory.findOne(updateStockDto.category_stock_id);
+      if ( categoryStock ) {
+        delete updateStockDto.category_stock_id;
+        return getRepository(Stock).update(id, {...updateStockDto, category_stock: categoryStock });
+      }
     } catch (error) {
       throw new HttpException(
         {
