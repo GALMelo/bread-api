@@ -17,6 +17,7 @@ export class StockService {
         newStock.category_stock = stockCategory;
         newStock.name = createStockDto.name;
         newStock.qty = createStockDto.qty;
+        newStock.dt_buy = createStockDto.dt_buy;
         newStock.dt_last_buy = createStockDto.dt_last_buy;
         newStock.last_buy_qty = createStockDto.last_buy_qty;
         const saveStock = await getRepository(Stock).save(newStock);

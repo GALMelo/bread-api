@@ -67,6 +67,7 @@ var StockService = /** @class */ (function () {
                         newStock.category_stock = stockCategory;
                         newStock.name = createStockDto.name;
                         newStock.qty = createStockDto.qty;
+                        newStock.dt_buy = createStockDto.dt_buy;
                         newStock.dt_last_buy = createStockDto.dt_last_buy;
                         newStock.last_buy_qty = createStockDto.last_buy_qty;
                         return [4 /*yield*/, (0, typeorm_1.getRepository)(stock_entity_1.Stock).save(newStock)];
