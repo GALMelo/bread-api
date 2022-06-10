@@ -20,6 +20,9 @@ export class Product {
   @Column('decimal', { precision: 5, scale: 2 })
   price: number;
 
+  @Column({default: 5})
+  validity: number;
+
   @Column()
   image_url: string;
 
