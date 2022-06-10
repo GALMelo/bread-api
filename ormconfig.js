@@ -2,7 +2,7 @@ var env = require('dotenv').config();
 
 module.exports = {
   type: 'mysql',
-  host: env.DATABASE_HOST,
+  host: process.env.DATABASE_HOST,
   port: 3306,
   username: process.env.DATABASE_USER,
   password: process.env.DATABASE_PASSWORD,

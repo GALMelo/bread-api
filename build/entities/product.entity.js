@@ -38,6 +38,10 @@ var Product = /** @class */ (function () {
         __metadata("design:type", Number)
     ], Product.prototype, "price", void 0);
     __decorate([
+        (0, typeorm_1.Column)({ default: 5 }),
+        __metadata("design:type", Number)
+    ], Product.prototype, "validity", void 0);
+    __decorate([
         (0, typeorm_1.Column)(),
         __metadata("design:type", String)
     ], Product.prototype, "image_url", void 0);
