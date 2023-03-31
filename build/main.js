@@ -37,16 +37,25 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@nestjs/core");
+var swagger_1 = require("@nestjs/swagger");
 var app_module_1 = require("./app.module");
 require("reflect-metadata");
 function bootstrap() {
     return __awaiter(this, void 0, void 0, function () {
-        var app;
+        var app, config, document;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0: return [4 /*yield*/, core_1.NestFactory.create(app_module_1.AppModule, { cors: true })];
                 case 1:
                     app = _a.sent();
+                    config = new swagger_1.DocumentBuilder()
+                        .setTitle('Bread-Api')
+                        .setDescription('SquaredBread API')
+                        .setVersion('1.0')
+                        .addTag('bread')
+                        .build();
+                    document = swagger_1.SwaggerModule.createDocument(app, config);
+                    swagger_1.SwaggerModule.setup('api', app, document);
                     return [4 /*yield*/, app.listen(process.env.PORT)];
                 case 2:
                     _a.sent();
