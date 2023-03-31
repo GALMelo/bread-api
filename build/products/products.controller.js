@@ -15,16 +15,27 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ProductsController = void 0;
 var common_1 = require("@nestjs/common");
 var products_service_1 = require("./products.service");
+var create_product_dto_1 = require("../dto/create-product.dto");
 var ProductsController = /** @class */ (function () {
     function ProductsController(productsService) {
         this.productsService = productsService;
     }
+    ProductsController.prototype.create = function (createProductDto) {
+        return this.productsService.create(createProductDto);
+    };
     ProductsController.prototype.findAll = function (query) {
         return this.productsService.findAll(query);
     };
     ProductsController.prototype.findOne = function (id) {
         return this.productsService.findOne(id);
     };
+    __decorate([
+        (0, common_1.Post)(),
+        __param(0, (0, common_1.Body)()),
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", [create_product_dto_1.CreateProductDto]),
+        __metadata("design:returntype", void 0)
+    ], ProductsController.prototype, "create", null);
     __decorate([
         (0, common_1.Get)(),
         __param(0, (0, common_1.Query)()),
